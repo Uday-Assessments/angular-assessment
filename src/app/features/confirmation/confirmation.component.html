@@ -1,0 +1,20 @@
+<div class="flex flex-col gap-5">
+  <h1>Confirmation</h1>
+
+  <mat-card class="mat-elevation-z1 mr-5 ml-5 lg:mr-14 lg:ml-14" id="application-form">
+    <div class="p-6">
+      <p class="font-bold">First Name:</p>
+      <p class="text-gray-700">{{applicationForm.firstName}}</p>
+      <p class="font-bold">Last Name:</p>
+      <p class="text-gray-700">{{applicationForm.lastName}}</p>
+      <p class="font-bold">Date of Birth:</p>
+      <p class="text-gray-700">{{applicationForm.dateOfBirth | date: 'dd/MM/YYYY'}}</p>
+      <p class="font-bold">Postal Code:</p>
+      <p class="text-gray-700">{{applicationForm.postalCode}}</p>
+    </div>
+    <mat-card-actions [align]="'end'" class="flex flex-row gap-5">
+      <button [routerLink]="'/entry'"  type="button" mat-flat-button color="accent">Back</button>
+      <button (click)="submitForm()"  type="button" mat-flat-button color="primary">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

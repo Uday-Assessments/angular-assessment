@@ -1,0 +1,39 @@
+<div class="flex flex-col gap-5">
+  <h1>Entry</h1>
+
+  <mat-card class="mat-elevation-z1 mr-5 ml-5 lg:mr-14 lg:ml-14" id="application-form">
+    <form class="flex flex-col flex-wrap gap-5" [formGroup]="applicationForm">
+      <div class="flex flex-row flex-wrap gap-5 flex-auto">
+        <mat-form-field appearance="outline" class="flex-auto">
+          <mat-label>First Name</mat-label>
+          <input matInput placeholder="Ex. John" formControlName="firstName">
+          <mat-error *ngIf="applicationForm.get('firstName')?.hasError('required')">{{'First Name cannot be blank'}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="flex-auto">
+          <mat-label>Last Name</mat-label>
+          <input matInput placeholder="Ex. Doe" formControlName="lastName">
+          <mat-error *ngIf="applicationForm.get('lastName')?.hasError('required')">{{'Last Name cannot be blank'}}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="flex flex-row flex-wrap gap-5">
+        <mat-form-field appearance="outline" class="flex-auto">
+          <mat-label>Date of Birth</mat-label>
+          <input matInput [matDatepicker]="datepicker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+          <mat-datepicker #datepicker></mat-datepicker>
+          <mat-error *ngIf="applicationForm.get('dateOfBirth')?.hasError('invalidAge')">{{applicationForm.get('dateOfBirth')?.getError('invalidAge')}}</mat-error>
+          <mat-error *ngIf="applicationForm.get('dateOfBirth')?.hasError('required')">{{'Date of birth cannot be blank'}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="flex-auto">
+          <mat-label>Postal Code</mat-label>
+          <input matInput placeholder="Ex. M4B 0A3" formControlName="postalCode">
+          <mat-error *ngIf="applicationForm.get('postalCode')?.hasError('pattern')">{{'Postal code must be in the format A1A 1A1'}}</mat-error>
+          <mat-error *ngIf="applicationForm.get('postalCode')?.hasError('required')">{{'Postal code cannot be blank'}}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <mat-card-actions [align]="'end'">
+      <button (click)="handleSave()" [disabled]="applicationForm.invalid" type="button" mat-flat-button color="primary">Next</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
